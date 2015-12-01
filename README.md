@@ -8,5 +8,3 @@
 Credits:
 
 Wikipedia for documentation.
-
-thebennybox for docs and math classes.
