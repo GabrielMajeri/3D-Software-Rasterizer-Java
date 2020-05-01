@@ -18,7 +18,7 @@ public class Main
 				v2 = new Vertex(new Vector4f(0, 1, 0, 1), new Vector4f(1, 1, 1, 1)), 
 				v3 = new Vertex(new Vector4f(1, -1, 0, 1), new Vector4f(1, 1, 1, 1));
 		
-		Matrix4f proj = new Matrix4f().InitPerspective((float)Math.toRadians(70), (float)target.getWidth()/(float)target.getHeight(),
+		Matrix4f proj = new Matrix4f().initPerspective((float)Math.toRadians(70), (float)target.getWidth()/(float)target.getHeight(),
 				0.1f, 1000);
 		
 		float rotCounter = 0.f;
@@ -32,8 +32,8 @@ public class Main
 			
 			rotCounter += delta;
 			
-			Matrix4f tran = new Matrix4f().InitTranslation(0, 0, 4.f);
-			Matrix4f rot = new Matrix4f().InitRotation(0, rotCounter, 0);
+			Matrix4f tran = new Matrix4f().initTranslation(0, 0, 4.f);
+			Matrix4f rot = new Matrix4f().initRotation(0, rotCounter, 0);
 			Matrix4f trn = proj.Mul(tran.Mul(rot));
 			
 			target.clear((byte)0x00);

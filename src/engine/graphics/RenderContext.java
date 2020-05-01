@@ -11,26 +11,26 @@ public class RenderContext extends Bitmap
 	
 	public void fillTriangle(Vertex v1, Vertex v2, Vertex v3)
 	{
-		Matrix4f scr = new Matrix4f(); scr.InitScreenSpaceTransform(getWidth()/2, getHeight()/2);
+		Matrix4f scr = new Matrix4f(); scr.initScreenSpaceTransform(getWidth()/2, getHeight()/2);
 		Vertex minYVert = v1.transform(scr).perspectiveDivide();
 		Vertex midYVert = v2.transform(scr).perspectiveDivide();
 		Vertex maxYVert = v3.transform(scr).perspectiveDivide();
 		
-		if(maxYVert.getY() < midYVert.getY() )
+		if(maxYVert.position.y < midYVert.position.y)
 		{
 			Vertex tmp = maxYVert;
 			maxYVert = midYVert;
 			midYVert = tmp;
 		}
 		
-		if(midYVert.getY() < minYVert.getY() )
+		if(midYVert.position.y < minYVert.position.y)
 		{
 			Vertex tmp = midYVert;
 			midYVert = minYVert;
 			minYVert = tmp;
 		}
 		
-		if(maxYVert.getY() < midYVert.getY() )
+		if(maxYVert.position.y < midYVert.position.y )
 		{
 			Vertex tmp = maxYVert;
 			maxYVert = midYVert;
@@ -55,8 +55,8 @@ public class RenderContext extends Bitmap
 			right = temp;
 		}
 
-		int yStart = topToMiddle.getYStart(),
-			yEnd = topToMiddle.getYEnd();
+		int yStart = topToMiddle.yStart,
+			yEnd = topToMiddle.yEnd;
 		for(int j = yStart; j < yEnd; j++)
 		{
 			drawScanLine(left, right, j);
@@ -73,8 +73,8 @@ public class RenderContext extends Bitmap
 			right = temp;
 		}
 
-		yStart = middleToBottom.getYStart();
-		yEnd = middleToBottom.getYEnd();
+		yStart = middleToBottom.yStart;
+		yEnd = middleToBottom.yEnd;
 		for(int j = yStart; j < yEnd; j++)
 		{
 			drawScanLine(left, right, j);

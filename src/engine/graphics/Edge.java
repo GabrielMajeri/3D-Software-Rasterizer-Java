@@ -2,31 +2,28 @@ package engine.graphics;
 
 public class Edge
 {
-	private float x, xStep;
-	private int yStart, yEnd;
-	
-	public float getX(){ return x; }
-	public int getYStart(){ return yStart; }
-	public int getYEnd(){ return yEnd; }
-	
-	Edge(Vertex minYVert, Vertex maxYVert)
+	public final double xStep;
+	public final int yStart, yEnd;
+
+	private double x;
+
+	public Edge(Vertex minYVert, Vertex maxYVert)
 	{
-		yStart = (int)Math.ceil(minYVert.getY());
-		yEnd = (int)Math.ceil(maxYVert.getY());
+		yStart = (int)Math.ceil(minYVert.position.y);
+		yEnd = (int)Math.ceil(maxYVert.position.y);
 		
-		float yDist = maxYVert.getY() - minYVert.getY();
-		float xDist = maxYVert.getX() - minYVert.getX();
+		double yDist = maxYVert.position.y - minYVert.position.y;
+		double xDist = maxYVert.position.x - minYVert.position.x;
+
+		double yPrestep = yStart - minYVert.position.y;
 		
-		float yPrestep = yStart - minYVert.getY();
-		
-		xStep = (float)xDist/(float)yDist;
-		x = minYVert.getX() + yPrestep * xStep;
+		xStep = xDist / yDist;
+		x = minYVert.position.x + yPrestep * xStep;
 	}
 	
 	public void step()
 	{
 		x += xStep;
 	}
-	
-	
+	public double getX() { return x; }
 }
